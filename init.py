@@ -35,5 +35,6 @@ with open(fname, 'w') as yaml_file:
    yaml_file.write(yaml.dump(data, default_flow_style=False))
 
 # now lets run
-ret_val = subprocess.call(sys.argv[1:])
-sys.exit(ret_val)
+proc = subprocess.Popen(sys.argv[1:], env=os.environ.copy())
+proc.wait()
+sys.exit(proc.returncode)
